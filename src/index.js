@@ -9,6 +9,23 @@ function App() {
   );
 }
 
+const skillsData = [
+  {
+    name: "HTML",
+    level: "Advanced",
+    color: "#001427",
+  },
+  {
+    name: "CSS",
+    level: "intermediate",
+    color: "#223427",
+  },
+  {
+    name: "Javasript",
+    level: "noob",
+    color: "#005c97",
+  },
+];
 function Profile() {
   return (
     <div className="profile">
@@ -37,18 +54,22 @@ function Info() {
 function Skills() {
   return (
     <div className="skills">
-      <Skill background="blue" language="HTML" emoji="👍" />
-      <Skill background="#BF0603" language="Java Script" emoji="🦾" />
-      <Skill background="#001427" language="React" emoji="😎" />
+      {skillsData.map((skill) => (
+        <Skill skillObj={skill} />
+      ))}
     </div>
   );
 }
 
-function Skill(props) {
+function Skill({ skillObj }) {
   return (
-    <div style={{ backgroundColor: `${props.background}` }}>
-      <span>{props.language}</span>
-      <icon>{props.emoji}</icon>
+    <div style={{ backgroundColor: `${skillObj.color}` }}>
+      <span>{skillObj.name}</span>
+      <icon>
+        {skillObj.level === "Advanced" && "💪"}
+        {skillObj.level === "intermediate" && "👍"}
+        {skillObj.level === "noob" && "👶"}
+      </icon>
     </div>
   );
 }
